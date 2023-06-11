@@ -30,15 +30,15 @@ public class GreetingController {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model){
         // первым шагом сохранили, нотация @RequestParam выдергивает сообщение из формы если мы передаем
         // с помощью post или из URL строки запроса
         Message message = new Message(text, tag);
         messageRepo.save(message);
         // вторым шагом получили и отдали пользователю
-        /*Iterable<Message> messages = messageRepo.findAll();
-        model.put("messages", messages);*/
+        Iterable<Message> messages = messageRepo.findAll();
+        model.put("messages", messages);
         return "main";
     }
 
